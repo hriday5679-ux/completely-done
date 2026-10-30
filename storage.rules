@@ -1,0 +1,27 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Default deny catch-all
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    // Institution Vault Documents: /documents/{institutionId}/{allFiles=**}
+    match /documents/{institutionId}/{allFiles=**} {
+      // Read access restricted to signed-in users
+      allow read: if isSignedIn();
+
+      // Uploads restricted to signed-in users with 25MB size limit
+      allow write: if isSignedIn()
+        && request.resource.size < 25 * 1024 * 1024;
+
+      // Deletion restricted to signed-in users
+      allow delete: if isSignedIn();
+    }
+  }
+}
