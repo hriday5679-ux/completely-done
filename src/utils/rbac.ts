@@ -1,4 +1,4 @@
-import { UserRole, User, Institution } from '../types/index.ts';
+import type { UserRole, User, Institution } from '../types/index.ts';
 
 /**
  * Checks whether a user can view a given institution's record.

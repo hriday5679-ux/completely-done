@@ -1,4 +1,4 @@
-import { DocumentType } from '../types/index.ts';
+import type { DocumentType } from '../types/index.ts';
 
 export interface DocumentRenderContext {
   docId: string;

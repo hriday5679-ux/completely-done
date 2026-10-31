@@ -26,6 +26,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
+// Immediate lightweight health check for Cloud Run / deployment rollout
+app.get(['/health', '/_health', '/api/health'], (_req: Request, res: Response) => {
+  res.status(200).send('OK');
+});
+
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 

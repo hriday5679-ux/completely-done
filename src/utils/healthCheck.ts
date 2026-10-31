@@ -1,4 +1,4 @@
-import { HealthCheckIssue, DocumentType, Institution, FDRRecord } from '../types/index.ts';
+import type { HealthCheckIssue, DocumentType, Institution, FDRRecord } from '../types/index.ts';
 
 export interface RequiredChecklistDoc {
   type: DocumentType;
